@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Компіляція та збірка проекту з використанням Maven
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Запуск модульних та інтеграційних тестів
+                sh 'mvn test'
+            }
+        }
+        stage('Package') {
+            steps {
+                // Упакування проекту (наприклад, у вигляді JAR-файлу)
+                sh 'mvn package'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Розгортання артефакту (наприклад, копіювання JAR-файлу на сервер)
+                sh 'mvn deploy'
+            }
+        }
+    }
+}
